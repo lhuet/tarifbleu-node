@@ -1,5 +1,5 @@
 var cronJob = require('cron').CronJob;
-var teleinfo = require('./teleinfo');
+var teleinfo = require('teleinfo');
 var util = require('util');
 
 var infosCompteur = {};
