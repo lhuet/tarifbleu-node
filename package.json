@@ -13,7 +13,7 @@
     "url": "https://github.com/lhuet/tarifbleu-node.git"
   },
   "dependencies": {
-    "teleinfo": "0.1.0"
+    "cron": "1.0.3"
   },
   "author": {
     "name": "Laurent HUET",
