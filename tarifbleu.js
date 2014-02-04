@@ -4,12 +4,21 @@ var util = require('util');
 
 var infosCompteur = {};
 
-function tarifbleu(port, cronTime, datalogger) {
+function tarifbleu(port, cronTime, datalogger, errorcb) {
 
-  var trameEvents = teleinfo.teleinfo(port);
+  var trameEvents = teleinfo(port);
   razinfosCompteur();
   trameEvents.on('tramedecodee', function (data) {
     majData(data);
+  });
+
+  trameEvents.on('error', function(err) {
+    if (typeof errorcb === 'function') {
+      errorcb(err);
+    }
+    else {
+      console.log(err);
+    }
   });
 
   var job = new cronJob(cronTime, function(){

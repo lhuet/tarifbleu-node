@@ -1,4 +1,4 @@
-var tarifbleu = require('tarifbleu');
+var tarifbleu = require('./tarifbleu');
 var util = require('util');
 
 var datalogger = function (data) {
