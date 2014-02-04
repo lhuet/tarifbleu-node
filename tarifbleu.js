@@ -27,7 +27,7 @@ function tarifbleu(port, cronTime, datalogger, errorcb) {
         // Suppression propriétés internes
         delete infosCompteur.psum;
         delete infosCompteur.isum;
-        delete infosCompteur.nb_mesure;
+        delete infosCompteur.nbMesure;
         datalogger(infosCompteur);
       }
       else {
@@ -64,33 +64,33 @@ function razinfosCompteur() {
   infosCompteur.pmaxi= 0;
   infosCompteur.pmoy= 0;
   infosCompteur.psum= 0;
-  infosCompteur.nb_mesure= 0;
+  infosCompteur.nbMesure= 0;
 }
 
 function majData(data) {
-  infosCompteur.nb_mesure += 1;
-  if (data['IINST']<infosCompteur.imini) {
-    infosCompteur.imini = data['IINST'];
+  infosCompteur.nbMesure += 1;
+  if (data.IINST<infosCompteur.imini) {
+    infosCompteur.imini = data.IINST;
   }
-  if (data['IINST']>infosCompteur.imaxi) {
-    infosCompteur.imaxi = data['IINST'];
+  if (data.IINST>infosCompteur.imaxi) {
+    infosCompteur.imaxi = data.IINST;
   }
-  infosCompteur.isum += data['IINST'];
-  infosCompteur.imoy = infosCompteur.isum / infosCompteur.nb_mesure;
-  if (data['PAPP']<infosCompteur.pmini) {
-    infosCompteur.pmini = data['PAPP'];
+  infosCompteur.isum += data.IINST;
+  infosCompteur.imoy = infosCompteur.isum / infosCompteur.nbMesure;
+  if (data.PAPP<infosCompteur.pmini) {
+    infosCompteur.pmini = data.PAPP;
   }
-  if (data['PAPP']>infosCompteur.pmaxi) {
-    infosCompteur.pmaxi = data['PAPP'];
+  if (data.PAPP>infosCompteur.pmaxi) {
+    infosCompteur.pmaxi = data.PAPP;
   }
-  infosCompteur.psum += data['PAPP'];
-  infosCompteur.pmoy = infosCompteur.psum / infosCompteur.nb_mesure;
+  infosCompteur.psum += data.PAPP;
+  infosCompteur.pmoy = infosCompteur.psum / infosCompteur.nbMesure;
   // Index compteur en Wh
-  infosCompteur.index = data['BASE'];
+  infosCompteur.index = data.BASE;
   // puissance apparente instantannée en VA
-  infosCompteur.pinst = data['PAPP'];
+  infosCompteur.pinst = data.PAPP;
   // intensité instantannée en A
-  infosCompteur.iinst = data['IINST'];
+  infosCompteur.iinst = data.IINST;
 }
 
 exports.tarifbleu = tarifbleu;
